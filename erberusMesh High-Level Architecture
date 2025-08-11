@@ -1,0 +1,34 @@
+@startuml
+title CerberusMesh High-Level Architecture
+
+package "Controller / Orchestration" {
+  [Controller Service]
+  [ML Anomaly Engine]
+  [CVSS Scoring + GPT Playbook]
+}
+
+package AWS {
+  [Cowrie Instance A] 
+  [Cowrie Instance B]
+}
+
+[Controller Service] --> [Cowrie Instance A] : launch / tear-down
+[Controller Service] --> [Cowrie Instance B]
+
+[Cowrie Instance A] --> [Controller Service] : pcap + alerts
+[Cowrie Instance B] --> [Controller Service]
+
+[Controller Service] --> [ML Anomaly Engine]
+[Controller Service] --> [CVSS Scoring + GPT Playbook]
+
+[ML Anomaly Engine] --> [Controller Service] : trigger scale events
+[CVSS Scoring + GPT Playbook] --> [Controller Service] : incident report
+
+[Controller Service] --> [ELK / React Dashboard] : send events
+[Controller Service] --> [Threat Intel Enrich (Shodan/VirusTotal)]
+
+package "Dashboard" {
+  [ELK Stack]
+  [React UI]
+}
+@enduml

@@ -1,0 +1,41 @@
+@startuml
+title CerberusMesh Interaction - Attacker Perspective
+
+actor Attacker
+participant "Honeypot (Cowrie)" as Cowrie
+participant "Cerberus Agent" as Agent
+participant "MITRE Mapper" as Mapper
+participant "GPT-4 CVSS Scorer" as GPT
+participant "Controller" as Controller
+participant "Redis / Log Store" as Cache
+participant "Dashboard API" as Dashboard
+
+== Reconnaissance ==
+Attacker -> Cowrie : Attempt login (brute force)
+Cowrie -> Agent : Emit login_attempt event
+
+== Event Enrichment ==
+Agent -> Mapper : Map event to ATT&CK technique
+Mapper --> Agent : T1059 (Command & Scripting Interpreter)
+
+== Behavioral Analysis ==
+Agent -> GPT : Analyze attacker behavior
+GPT --> Agent : Threat Score: 0.82, Suggest Response: Decoy Launch
+
+== Decision Engine ==
+Agent -> Agent : Evaluate score & technique
+Agent -> Controller : Deploy new honeypot (SSH+SMB)
+Agent -> Cache : Log decision & attacker fingerprint
+
+== Deceptive Interaction ==
+Agent -> Cowrie : Insert fake file / trap
+Attacker -> Cowrie : Executes trap script
+Cowrie -> Agent : Alert: tripwire_triggered
+
+== Escalation ==
+Agent -> GPT : Re-assess session with updated context
+GPT --> Agent : High confidence APT, Recommend key rotation
+Agent -> Controller : Rotate SSH key, isolate instance
+Agent -> Dashboard : Update threat timeline & CVSS
+
+@enduml
