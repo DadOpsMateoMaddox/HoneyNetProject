@@ -1,0 +1,185 @@
+@startuml CerberusMesh Bad Actor Interaction Sequence
+!theme aws-orange
+title CerberusMesh: Bad Actor "Knocks on Wrong Door" - AI Deception & Detection
+
+skinparam backgroundColor #F8F9FA
+skinparam sequenceMessageAlign center
+skinparam roundcorner 10
+
+actor "Bad Actor" as attacker #FF6B6B
+participant "Cowrie Honeypot" as cowrie #4ECDC4
+participant "Engagement Engine" as engage #45B7D1
+participant "AI Chatbot System" as chatbot #96CEB4
+participant "Tripwire System" as tripwire #FECA57
+participant "CerberusMesh Agent" as agent #FF9FF3
+participant "Controller API" as controller #54A0FF
+participant "Redis Cache" as redis #FDA7DF
+database "Threat Intel DB" as db #5F27CD
+
+== Initial Reconnaissance Phase ==
+attacker -> cowrie : SSH connection attempt\n(port 22)
+activate cowrie
+cowrie -> engage : Session opened event\n{session_id: "sess_123", src_ip: "203.0.113.5"}
+activate engage
+
+engage -> redis : Cache session data
+engage -> chatbot : Initialize persona\n("junior_sysadmin")
+activate chatbot
+chatbot -> redis : Store conversation context
+chatbot --> engage : Persona ready
+
+note right of engage
+Engagement rules:
+- Monitor for commands
+- Trigger on suspicious patterns
+- Deploy persona on interaction
+end note
+
+== Command Pattern Detection ==
+attacker -> cowrie : "whoami"
+cowrie -> engage : Log command event
+engage -> tripwire : Analyze command\n("whoami", session_id)
+activate tripwire
+
+tripwire -> tripwire : Pattern detection\n(reconnaissance category)
+tripwire -> redis : Cache behavioral data
+tripwire --> engage : TripwireEvent\n{type: "pattern", severity: "low"}
+
+attacker -> cowrie : "id"
+cowrie -> engage : Log command event
+engage -> tripwire : Analyze command\n("id", session_id)
+tripwire -> tripwire : Update behavior profile\n(automation_score: 0.2)
+
+== Escalation - Privilege Escalation Attempt ==
+attacker -> cowrie : "sudo su -"
+cowrie -> engage : Log command event
+engage -> tripwire : Analyze command\n("sudo su -", session_id)
+
+tripwire -> tripwire : Pattern match:\nprivilege_escalation
+tripwire -> tripwire : Update scores:\n(persistence_score: 0.4)
+tripwire -> redis : Cache high-severity event
+tripwire --> engage : TripwireEvent\n{type: "pattern", severity: "high"}
+
+note right of tripwire
+Tripwire Analysis:
+✓ Privilege escalation pattern
+✓ Sequence detection
+✓ Behavioral scoring
+⚠ Risk threshold exceeded
+end note
+
+engage -> engage : Evaluate engagement rules\n(severity >= "medium")
+engage -> chatbot : Deploy persona interaction
+chatbot -> chatbot : Generate response:\n"Oh wow, you need sudo access?\nI'm still pretty new here..."
+
+== AI Deception Deployment ==
+chatbot -> cowrie : Inject persona response
+cowrie -> attacker : Display chatbot response
+activate attacker
+
+attacker -> cowrie : "Can you help me access admin?"
+cowrie -> engage : Log interaction
+engage -> chatbot : Process attacker input
+chatbot -> chatbot : Analyze intent & generate response
+chatbot -> chatbot : Add deceptive content:\n"Sure! The temp password is QuickFix2024"
+
+note left of chatbot
+AI Persona Behavior:
+- Junior sysadmin personality
+- Helpful but naive responses
+- Inject fake credentials
+- Build trust with attacker
+end note
+
+chatbot -> redis : Log interaction
+chatbot -> cowrie : Inject deceptive response
+cowrie -> attacker : Display fake credentials
+
+== Behavioral Analysis & Escalation ==
+attacker -> cowrie : "find /home -name '*.txt'"
+cowrie -> engage : Log command
+engage -> tripwire : Analyze command
+
+tripwire -> tripwire : Data exfiltration pattern
+tripwire -> tripwire : Sequence analysis:\n["sudo su", "find"] = reconnaissance
+tripwire -> tripwire : Update risk score: 0.85
+tripwire -> agent : Auto-escalate event\n{confidence: 0.9, severity: "critical"}
+
+activate agent
+agent -> controller : Report threat escalation
+activate controller
+controller -> db : Query threat intelligence
+controller -> agent : Autonomous response authorized
+agent -> engage : Modify engagement strategy
+agent -> redis : Update threat profile
+
+== Advanced Persistence Detection ==
+attacker -> cowrie : "crontab -e"
+cowrie -> engage : Log command
+engage -> tripwire : Analyze command
+
+tripwire -> tripwire : Persistence establishment pattern
+tripwire -> tripwire : Sequence match:\n["sudo su", "find", "crontab"] = persistence_setup
+tripwire -> tripwire : Critical threshold exceeded\n(stealth_score: 0.9)
+
+tripwire -> agent : Critical escalation
+agent -> controller : ALERT: Advanced persistent threat
+controller -> controller : Generate CVSS score: 8.5
+controller -> db : Store threat indicators
+
+== Coordinated Deception Response ==
+agent -> chatbot : Switch persona to "panicking_intern"
+chatbot -> chatbot : Update personality:\n"OH NO! Should I call security?!"
+
+agent -> engage : Deploy honeypot files
+engage -> cowrie : Create fake sensitive files
+
+chatbot -> cowrie : Inject panic response
+cowrie -> attacker : "Wait, you're not supposed to be here!\nI think I messed up the permissions!"
+
+note right of agent
+CerberusMesh Agent Actions:
+- Persona switching
+- Honeypot deployment  
+- Threat escalation
+- Coordinated response
+end note
+
+== Data Collection & Analysis ==
+loop Every command
+    attacker -> cowrie : Execute commands
+    cowrie -> engage : Monitor & log
+    engage -> tripwire : Behavioral analysis
+    tripwire -> redis : Update threat profile
+    engage -> chatbot : Maintain deception
+    chatbot -> redis : Log all interactions
+end
+
+== Session Termination & Intelligence ==
+attacker -> cowrie : "exit"
+cowrie -> engage : Session closed event
+engage -> tripwire : Final analysis
+tripwire -> agent : Session summary
+agent -> controller : Threat intelligence report
+
+controller -> db : Store complete attack profile:\n- 15 commands analyzed\n- 8 tripwires triggered\n- 12 AI interactions logged\n- Risk score: 0.89\n- TTPs: T1078, T1059, T1053
+
+deactivate attacker
+deactivate cowrie
+deactivate engage
+deactivate chatbot
+deactivate tripwire
+deactivate agent
+deactivate controller
+
+note across
+Attack Session Complete:
+✓ Full command history captured
+✓ Behavioral patterns analyzed  
+✓ Fake credentials deployed
+✓ Real TTPs identified
+✓ Threat intelligence generated
+✓ Zero real system compromise
+end note
+
+@enduml

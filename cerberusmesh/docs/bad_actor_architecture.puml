@@ -1,0 +1,189 @@
+@startuml CerberusMesh Architecture - Bad Actor Defense
+!theme aws-orange
+title CerberusMesh: Advanced AI-Powered Honeypot Architecture
+
+skinparam backgroundColor #F8F9FA
+skinparam componentStyle uml2
+skinparam roundcorner 10
+
+!define ATTACKER_COLOR #FF6B6B
+!define HONEYPOT_COLOR #4ECDC4
+!define AI_COLOR #96CEB4
+!define DETECTION_COLOR #FECA57
+!define RESPONSE_COLOR #FF9FF3
+!define INTEL_COLOR #5F27CD
+
+cloud "Internet" as internet {
+    actor "Bad Actor" as attacker <<Threat>> ATTACKER_COLOR
+    note top of attacker
+    Reconnaissance Tools:
+    - Nmap, Masscan
+    - SSH Brute Force
+    - Automated Scripts
+    end note
+}
+
+package "CerberusMesh Honeypot Platform" {
+    
+    package "Deception Layer" as deception_layer {
+        component "Cowrie SSH Honeypot" as cowrie HONEYPOT_COLOR
+        component "Fake Services" as fake_services HONEYPOT_COLOR
+        
+        note right of cowrie
+        SSH Honeypot Features:
+        - Real-time session capture
+        - Command logging  
+        - File interaction simulation
+        - Network service emulation
+        end note
+    }
+    
+    package "AI Engagement System" as ai_system {
+        component "Engagement Engine" as engage AI_COLOR {
+            portin session_monitor
+            portout persona_trigger
+        }
+        
+        component "AI Chatbot Personas" as chatbot AI_COLOR {
+            portout ai_response
+            portin attacker_input
+        }
+        
+        component "Persona Manager" as personas AI_COLOR
+        
+        note bottom of chatbot
+        5 AI Personas:
+        • Junior Sysadmin (helpful, naive)
+        • Sarcastic Engineer (dismissive)  
+        • Panicking Intern (nervous, mistakes)
+        • Helpful Veteran (experienced, trusting)
+        • Overconfident Admin (arrogant, oversharing)
+        end note
+    }
+    
+    package "Detection & Analysis" as detection_layer {
+        component "Behavioral Tripwires" as tripwire DETECTION_COLOR {
+            portin command_analysis
+            portout threat_events
+        }
+        
+        component "MITRE ATT&CK Mapper" as mitre DETECTION_COLOR
+        component "ML Anomaly Engine" as ml_engine DETECTION_COLOR
+        
+        note right of tripwire
+        Advanced Detection:
+        - Pattern matching (7 categories)
+        - Sequence analysis
+        - Frequency anomalies
+        - Behavioral scoring
+        - Risk assessment
+        end note
+    }
+    
+    package "Response & Intelligence" as response_layer {
+        component "CerberusMesh Agent" as agent RESPONSE_COLOR {
+            portin threat_escalation
+            portout autonomous_actions
+        }
+        
+        component "GPT CVSS Scorer" as cvss_scorer RESPONSE_COLOR
+        component "Dashboard API" as dashboard RESPONSE_COLOR
+    }
+    
+    package "Data & Coordination" as data_layer {
+        database "Redis Cache" as redis {
+            artifact "Session Data" as session_data
+            artifact "Threat Profiles" as threat_profiles  
+            artifact "AI Conversations" as conversations
+        }
+        
+        database "Threat Intelligence DB" as threat_db INTEL_COLOR {
+            artifact "Attack Patterns" as patterns
+            artifact "IOCs" as iocs
+            artifact "TTPs" as ttps
+        }
+        
+        component "Controller API" as controller INTEL_COLOR
+    }
+}
+
+package "External Integrations" {
+    cloud "OpenAI GPT-4" as openai AI_COLOR
+    cloud "Threat Intel Feeds" as threat_feeds INTEL_COLOR
+    component "SIEM Integration" as siem
+    component "SOC Dashboard" as soc
+}
+
+' Attacker Flow
+attacker -down-> cowrie : SSH Connection\n(Port 22)
+attacker <-down- cowrie : Fake Shell Environment
+
+' Engagement Flow  
+cowrie -right-> engage : Session Events\n& Commands
+engage -down-> chatbot : Deploy Persona
+chatbot -up-> engage : AI Responses
+engage -left-> cowrie : Inject Responses
+
+' Detection Flow
+engage -down-> tripwire : Command Analysis
+tripwire -right-> mitre : Pattern Mapping
+tripwire -down-> ml_engine : Behavioral Analysis
+tripwire -down-> agent : Threat Escalation
+
+' AI Processing
+chatbot <-right-> openai : GPT-4 API Calls
+chatbot -down-> personas : Persona Selection
+
+' Response Coordination
+agent -right-> cvss_scorer : Risk Assessment
+agent -up-> controller : Threat Reports
+agent -left-> engage : Modify Strategy
+
+' Data Flow
+engage -down-> redis : Cache Session Data
+tripwire -down-> redis : Store Threat Events
+chatbot -down-> redis : Log Conversations
+controller -down-> threat_db : Store Intelligence
+
+' External Integration
+controller <-right-> threat_feeds : Threat Intel
+dashboard -right-> siem : Alert Integration
+dashboard -right-> soc : Real-time Dashboard
+
+' Key Data Flows with Labels
+cowrie .down.> session_data : "Session\nCapture"
+tripwire .down.> threat_profiles : "Behavioral\nAnalysis"  
+chatbot .down.> conversations : "AI\nInteractions"
+controller .down.> patterns : "Attack\nIntelligence"
+
+legend right
+    |Color |Component Type |
+    |ATTACKER_COLOR| Threat Actor |
+    |HONEYPOT_COLOR| Deception Layer |
+    |AI_COLOR| AI/ML Components |
+    |DETECTION_COLOR| Detection Systems |
+    |RESPONSE_COLOR| Response & Analysis |
+    |INTEL_COLOR| Intelligence & Data |
+end legend
+
+note as attack_flow
+**Attack Flow Example:**
+1. Attacker connects to fake SSH
+2. Executes reconnaissance commands  
+3. AI persona responds helpfully
+4. Tripwires detect patterns
+5. Behavioral scoring escalates
+6. Agent coordinates response
+7. Full attack chain captured
+end note
+
+note as deception_tactics
+**Deception Tactics:**
+• Fake credentials & API keys
+• Convincing error messages
+• Realistic system responses  
+• Social engineering hooks
+• Honeypot file deployment
+end note
+
+@enduml

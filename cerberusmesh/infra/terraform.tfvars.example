@@ -1,0 +1,22 @@
+# Terraform variables file for CerberusMesh
+# Copy this file to terraform.tfvars and customize as needed
+
+# AWS Configuration
+aws_region = "us-east-1"
+environment = "dev"
+
+# Instance Configuration
+instance_count = 2
+instance_type = "t3.micro"
+
+# Network Configuration
+vpc_cidr = "10.0.0.0/16"
+public_subnet_cidrs = ["10.0.1.0/24", "10.0.2.0/24"]
+private_subnet_cidrs = ["10.0.10.0/24", "10.0.20.0/24"]
+
+# Security Configuration
+allowed_ips = ["0.0.0.0/0"]  # CHANGE THIS IN PRODUCTION
+honeypot_ports = [22, 23, 80, 443, 3389, 8080]
+
+# SSH Key
+key_name = "cerberusmesh-key"

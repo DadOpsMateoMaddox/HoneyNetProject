@@ -1,0 +1,168 @@
+# Docker Compose configuration for CerberusMesh development environment
+
+version: '3.8'
+
+services:
+  # Dashboard API
+  dashboard-api:
+    build:
+      context: .
+      dockerfile: docker/dashboard.Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - CERBERUSMESH_ENV=development
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+    volumes:
+      - ./dashboard:/app/dashboard
+      - ./shared:/app/shared
+      - dashboard_data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ML Anomaly Engine
+  ml-engine:
+    build:
+      context: .
+      dockerfile: docker/ml.Dockerfile
+    environment:
+      - CERBERUSMESH_ENV=development
+    volumes:
+      - ./ml:/app/ml
+      - ./shared:/app/shared
+      - ml_data:/app/data
+    restart: unless-stopped
+    depends_on:
+      - dashboard-api
+
+  # Controller Service
+  controller:
+    build:
+      context: .
+      dockerfile: docker/controller.Dockerfile
+    environment:
+      - CERBERUSMESH_ENV=development
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+    volumes:
+      - ./controller:/app/controller
+      - ./shared:/app/shared
+      - controller_data:/app/data
+    restart: unless-stopped
+    depends_on:
+      - dashboard-api
+
+  # CVSS Scorer
+  cvss-scorer:
+    build:
+      context: .
+      dockerfile: docker/cvss.Dockerfile
+    environment:
+      - CERBERUSMESH_ENV=development
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ./gpt_cvss:/app/gpt_cvss
+      - ./shared:/app/shared
+      - cvss_data:/app/data
+    restart: unless-stopped
+    depends_on:
+      - dashboard-api
+
+  # Cerberus Agent - AI Watchdog
+  cerberus-agent:
+    build:
+      context: ./agent
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    environment:
+      - CERBERUSMESH_ENV=development
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_DB=1
+      - CERBERUS_AUTO_ACTION=true
+      - CERBERUS_THRESHOLD=0.7
+    volumes:
+      - ./agent:/app
+      - ./shared:/app/shared
+      - /opt/cowrie/var/log:/opt/cowrie/var/log:ro
+      - agent_logs:/app/logs
+    restart: unless-stopped
+    depends_on:
+      - redis
+      - dashboard-api
+      - controller
+    networks:
+      - default
+
+  # Redis for caching and message queuing
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Grafana for advanced visualization (optional)
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=cerberusmesh
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./docker/grafana/provisioning:/etc/grafana/provisioning
+    restart: unless-stopped
+    depends_on:
+      - dashboard-api
+
+  # Prometheus for metrics collection (optional)
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    restart: unless-stopped
+
+volumes:
+  dashboard_data:
+  ml_data:
+  controller_data:
+  cvss_data:
+  agent_logs:
+  redis_data:
+  grafana_data:
+  prometheus_data:
+
+networks:
+  default:
+    name: cerberusmesh_network
