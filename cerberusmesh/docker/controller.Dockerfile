@@ -27,4 +27,4 @@ COPY shared/ ./shared/
 RUN mkdir -p /app/data
 
 # Run the controller
-CMD ["python", "-m", "controller.main", "monitor"]
+CMD ["python", "-m", "controller.main"]

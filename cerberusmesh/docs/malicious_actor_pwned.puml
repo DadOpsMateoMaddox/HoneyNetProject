@@ -1,0 +1,176 @@
+@startuml CerberusMesh - Malicious Actor Gets Absolutely Rekt
+!theme aws-orange
+title "CerberusMesh: When Bad Actors Fuck Around and Find Out 💀"
+
+skinparam backgroundColor #F8F9FA
+skinparam componentStyle uml2
+skinparam roundcorner 10
+
+!define ATTACKER_COLOR #FF6B6B
+!define HONEYPOT_COLOR #4ECDC4
+!define AI_COLOR #96CEB4
+!define DETECTION_COLOR #FECA57
+!define RESPONSE_COLOR #FF9FF3
+!define INTEL_COLOR #5F27CD
+!define PWNED_COLOR #8B0000
+
+cloud "Dark Web / Threat Actor Networks" as darkweb {
+    actor "Script Kiddie" as skiddie <<Overconfident>> ATTACKER_COLOR
+    actor "APT Group" as apt <<Advanced Threat>> ATTACKER_COLOR
+    actor "Ransomware Operator" as ransomware <<Criminal>> ATTACKER_COLOR
+    
+    note top of skiddie
+    "Easy targets, here I come!
+    This server looks vulnerable..."
+    💭 Famous last words
+    end note
+}
+
+package "CerberusMesh: The House Always Wins 🎰" {
+    
+    package "Deception Layer - The Honey Trap 🍯" as deception {
+        component "SSH Honeypot" as ssh HONEYPOT_COLOR {
+            note bottom
+            "Welcome to the Hotel California
+            You can check out anytime...
+            But you can NEVER leave! 😈"
+            end note
+        }
+        
+        component "Fake Admin Panel" as admin_panel HONEYPOT_COLOR
+        component "Vulnerable Database" as fake_db HONEYPOT_COLOR
+        component "Decoy File Shares" as file_shares HONEYPOT_COLOR
+        
+        ssh -down-> admin_panel : "Discovers" credentials
+        admin_panel -down-> fake_db : "Gains access"
+        fake_db -down-> file_shares : "Finds" sensitive data
+    }
+    
+    package "AI Engagement - The Puppet Master 🎭" as ai_engagement {
+        component "GPT-4 Personas" as personas AI_COLOR {
+            note right
+            🎭 Character Roster:
+            - "Worried Junior Admin"
+            - "Helpful IT Support" 
+            - "Panicked Intern"
+            - "Overworked DBA"
+            
+            Goal: Keep attackers engaged
+            while we study their methods
+            end note
+        }
+        
+        component "Adaptive Deception" as adaptive AI_COLOR
+        component "Behavioral Analysis" as behavior AI_COLOR
+        
+        personas --> adaptive : Real-time persona switching
+        adaptive --> behavior : Learning attack patterns
+    }
+    
+    package "Detection & Intelligence - The All-Seeing Eye 👁️" as detection {
+        component "ML Anomaly Engine" as ml_engine DETECTION_COLOR {
+            note left
+            🧠 Learning Everything:
+            - Attack patterns
+            - Tool fingerprints  
+            - Behavioral signatures
+            - Command sequences
+            end note
+        }
+        
+        component "MITRE ATT&CK Mapper" as mitre DETECTION_COLOR
+        component "Threat Intelligence" as threat_intel INTEL_COLOR
+        component "IOC Generator" as ioc_gen INTEL_COLOR
+        
+        ml_engine --> mitre : Auto-maps techniques
+        mitre --> threat_intel : Enriches context
+        threat_intel --> ioc_gen : Generates signatures
+    }
+    
+    package "Autonomous Response - The Enforcer 🤖" as response {
+        component "Cerberus Agent" as cerberus RESPONSE_COLOR {
+            note bottom
+            🤖 Autonomous Actions:
+            - Deploy counter-measures
+            - Rotate compromised assets
+            - Launch additional decoys
+            - Escalate to human analysts
+            end note
+        }
+        
+        component "Active Defense" as active_defense RESPONSE_COLOR
+        component "Attribution Engine" as attribution RESPONSE_COLOR
+        
+        cerberus --> active_defense : Executes responses
+        active_defense --> attribution : Builds actor profiles
+    }
+    
+    package "Data Collection - The Memory Palace 🧠" as data_collection {
+        database "Attack Playbooks" as playbooks
+        database "Threat Actor Profiles" as profiles  
+        database "TTPs Database" as ttps
+        database "Evidence Vault" as evidence
+        
+        playbooks --> profiles : Links behaviors
+        profiles --> ttps : Maps techniques
+        ttps --> evidence : Correlates attacks
+    }
+}
+
+package "Enterprise Integration - The Command Center 🎯" as enterprise {
+    component "Splunk SIEM" as splunk
+    component "Grafana Dashboard" as grafana
+    component "Incident Response" as incident_response
+    component "Threat Hunting" as threat_hunting
+    
+    splunk --> grafana : Real-time metrics
+    grafana --> incident_response : Alert generation
+    incident_response --> threat_hunting : Investigation triggers
+}
+
+' === THE FLOW OF DOOM ===
+skiddie -right-> ssh : "Let me try some exploits..."
+apt -right-> admin_panel : "Sophisticated reconnaissance"
+ransomware -right-> fake_db : "Looking for crypto wallets"
+
+ssh --> personas : Trigger AI responses
+admin_panel --> personas
+fake_db --> personas
+
+personas --> ml_engine : Feed behavioral data
+ml_engine --> cerberus : Anomaly detected!
+cerberus --> active_defense : "Time to fuck around back! 😈"
+
+active_defense -up-> ssh : Deploy additional traps
+active_defense -up-> admin_panel : Serve poisoned data
+active_defense -up-> fake_db : Plant attribution beacons
+
+' === DATA FLOWS ===
+behavior --> playbooks : Store attack methods
+mitre --> profiles : Update actor intelligence
+ioc_gen --> ttps : Generate defensive signatures
+attribution --> evidence : Document attribution
+
+' === ENTERPRISE ALERTS ===
+cerberus --> splunk : Send high-fidelity alerts
+threat_intel --> grafana : Update threat landscape
+evidence --> incident_response : Trigger investigations
+profiles --> threat_hunting : Enable proactive hunting
+
+note top of enterprise
+🚨 "Holy shit, we've got live attackers!"
+- Real-time threat intelligence
+- Automated defensive responses  
+- Attribution evidence collection
+- Zero false positives
+end note
+
+note bottom of data_collection PWNED_COLOR
+💀 GAME OVER FOR ATTACKERS 💀
+"We see everything, we learn everything,
+we remember everything. Your techniques
+are now our techniques. Thanks for the
+free education! 🎓"
+end note
+
+@enduml

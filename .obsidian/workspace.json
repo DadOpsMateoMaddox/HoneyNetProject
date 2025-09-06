@@ -1,0 +1,185 @@
+{
+  "main": {
+    "id": "4a715899454c3d63",
+    "type": "split",
+    "children": [
+      {
+        "id": "cb7f68a41d9a2279",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3a8ed78a9eeeac90",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CerberusMesh-Obsidian-Vault/System Overview.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "System Overview"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "4bc92e97783fc585",
+    "type": "split",
+    "children": [
+      {
+        "id": "e75c1810975e9bba",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4c44f9a98ab5317f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "dc86a6daf51eba04",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "e084ceab45c1108a",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "23c5bb8601e4342a",
+    "type": "split",
+    "children": [
+      {
+        "id": "3b27343587a11021",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1692dc9a494370c6",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "CerberusMesh-Obsidian-Vault/System Overview.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for System Overview"
+            }
+          },
+          {
+            "id": "96093ccd705ba332",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "CerberusMesh-Obsidian-Vault/System Overview.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from System Overview"
+            }
+          },
+          {
+            "id": "1c3c98092ea4ea9b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "aa8f75a9ee7d9126",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "CerberusMesh-Obsidian-Vault/System Overview.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of System Overview"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "3a8ed78a9eeeac90",
+  "lastOpenFiles": [
+    "WhenUCommitAndRealizeYourForgotToInit.png",
+    "CerberusMesh-Obsidian-Vault/Troubleshooting Guide.md",
+    "CerberusMesh-Obsidian-Vault/Performance & Optimization.md",
+    "CerberusMesh-Obsidian-Vault/Mind Maps & Visual Learning.md",
+    "CerberusMesh-Obsidian-Vault/Interview Preparation.md",
+    "CerberusMesh-Obsidian-Vault/Demo Scenarios.md",
+    "CerberusMesh-Obsidian-Vault/Data Flow Analysis.md",
+    "CerberusMesh-Obsidian-Vault/Component Deep Dive.md",
+    "CerberusMesh-Obsidian-Vault/README.md",
+    "CerberusMesh-Obsidian-Vault/System Overview.md"
+  ]
+}

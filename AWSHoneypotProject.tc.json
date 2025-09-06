@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "applicationInfo": {
+    "description": "secure AWS environment to run honeypots and collect logs.",
+    "name": "AWSHoneyPot"
+  },
+  "architecture": {},
+  "dataflow": {},
+  "assumptions": [],
+  "mitigations": [],
+  "assumptionLinks": [],
+  "mitigationLinks": [],
+  "threats": []
+}
