@@ -30,3 +30,6 @@ __pycache__/
 !**/screenshot*.png
 !**/demo*.png
 !**/architecture*.png
+
+# Personal content
+Patreon-Post-*.md
