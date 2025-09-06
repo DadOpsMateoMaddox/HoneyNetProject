@@ -11,14 +11,10 @@
             "id": "3a8ed78a9eeeac90",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "CerberusMesh-Obsidian-Vault/System Overview.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "System Overview"
+              "title": "New tab"
             }
           }
         ]
@@ -94,7 +90,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CerberusMesh-Obsidian-Vault/System Overview.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +99,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for System Overview"
+              "title": "Backlinks"
             }
           },
           {
@@ -113,12 +108,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "CerberusMesh-Obsidian-Vault/System Overview.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from System Overview"
+              "title": "Outgoing links"
             }
           },
           {
@@ -142,13 +136,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CerberusMesh-Obsidian-Vault/System Overview.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of System Overview"
+              "title": "Outline"
             }
           }
         ]
@@ -171,6 +164,8 @@
   },
   "active": "3a8ed78a9eeeac90",
   "lastOpenFiles": [
+    "CerberusMesh-Obsidian-Vault/System Overview.md",
+    "Patreon-Post-CerberusMesh.md",
     "WhenUCommitAndRealizeYourForgotToInit.png",
     "CerberusMesh-Obsidian-Vault/Troubleshooting Guide.md",
     "CerberusMesh-Obsidian-Vault/Performance & Optimization.md",
@@ -179,7 +174,6 @@
     "CerberusMesh-Obsidian-Vault/Demo Scenarios.md",
     "CerberusMesh-Obsidian-Vault/Data Flow Analysis.md",
     "CerberusMesh-Obsidian-Vault/Component Deep Dive.md",
-    "CerberusMesh-Obsidian-Vault/README.md",
-    "CerberusMesh-Obsidian-Vault/System Overview.md"
+    "CerberusMesh-Obsidian-Vault/README.md"
   ]
 }
