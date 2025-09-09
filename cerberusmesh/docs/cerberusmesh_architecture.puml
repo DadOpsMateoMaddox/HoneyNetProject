@@ -1,0 +1,115 @@
+@startuml CerberusMesh Enterprise Architecture
+
+title CerberusMesh Enterprise SOAR Platform Architecture
+
+skinparam backgroundColor #FEFEFE
+skinparam componentStyle uml2
+
+' External Systems
+package "External Systems" as EXT #LightBlue {
+    component "SIEM Systems" as SIEM
+    component "Threat Feeds" as FEEDS
+    component "MISP Platform" as MISP
+    component "Log Aggregators" as LOGS
+}
+
+' AWS Infrastructure Layer
+package "AWS Enterprise Infrastructure" as AWS #LightGreen {
+    cloud "EKS Cluster" as EKS {
+        component "SOAR Node Group" as SOAR_NODES
+        component "Honeypot Node Group" as HONEYPOT_NODES
+        component "Monitoring Node Group" as MONITOR_NODES
+    }
+
+    database "RDS PostgreSQL" as RDS
+    database "ElastiCache Redis" as REDIS
+    queue "MSK Kafka" as KAFKA
+    storage "OpenSearch" as OPENSEARCH
+    storage "S3 Storage" as S3
+}
+
+' CerberusMesh Core Components
+package "CerberusMesh SOAR Platform" as CM #LightYellow {
+
+    ' Honeypot Layer
+    package "Honeypot Layer" as HONEY {
+        component "SSH Traps" as SSH_TRAP
+        component "HTTP Traps" as HTTP_TRAP
+        component "Protocol Emulators" as PROTOCOLS
+        component "Threat Actors" as ACTORS
+    }
+
+    ' AI/ML Engine
+    package "AI/ML Engine" as AI {
+        component "GPT-4 Analysis" as GPT4
+        component "CVSS Scoring" as CVSS
+        component "Anomaly Detection" as ANOMALY
+        component "ML Models" as MODELS
+    }
+
+    ' SOAR Engine
+    package "SOAR Engine" as SOAR {
+        component "Playbook Engine" as PLAYBOOK
+        component "Workflow Orchestrator" as ORCHESTRATOR
+        component "SIEM Integration" as SIEM_INT
+        component "Response Actions" as ACTIONS
+    }
+
+    ' Data Fabric Layer
+    package "Data Fabric Layer" as DATA {
+        component "Session Manager" as SESSION_MGR
+        component "OSINT Enrichment" as OSINT
+        component "Threat Classification" as CLASSIFY
+        component "Retention Policies" as RETENTION
+    }
+
+    ' Observability Layer
+    package "Observability Layer" as OBS {
+        component "Grafana Dashboards" as GRAFANA
+        component "Prometheus Metrics" as PROMETHEUS
+        component "Real-time Monitoring" as MONITORING
+        component "Alerting System" as ALERTS
+    }
+
+    ' Security Layer
+    package "Security Layer" as SEC {
+        component "Zero Trust Networking" as ZT_NET
+        component "End-to-End Encryption" as ENCRYPTION
+        component "IAM/RBAC" as IAM
+        component "Audit Logging" as AUDIT
+    }
+}
+
+' Data Flow Relationships
+EXT --> CM : Threat Intelligence
+CM --> EXT : IOC Exports
+
+AWS --> CM : Infrastructure Services
+CM --> AWS : Data Storage & Processing
+
+' Internal Component Relationships
+HONEY --> DATA : Raw Events
+DATA --> AI : Enriched Sessions
+AI --> SOAR : Threat Analysis
+SOAR --> ACTIONS : Automated Responses
+SOAR --> SIEM_INT : SIEM Integration
+
+DATA --> OBS : Metrics & Logs
+OBS --> ALERTS : Real-time Alerts
+
+SEC --> CM : Security Controls
+AUDIT --> LOGS : Compliance Logs
+
+' Network Isolation
+note right of HONEY : Isolated Honeypot Network
+note right of OBS : Monitoring Network
+note right of SEC : Zero Trust Segmentation
+
+' Key Data Flows
+SESSION_MGR --> REDIS : Session Storage
+SESSION_MGR --> RDS : Persistent Data
+PLAYBOOK --> KAFKA : Event Streaming
+CVSS --> OPENSEARCH : Log Analytics
+ACTIONS --> S3 : Evidence Storage
+
+@enduml

@@ -59,6 +59,9 @@ var/log/
 *.db
 *.sqlite
 *.sqlite3
+data/*.db
+data/*.sqlite
+data/*.sqlite3
 dashboard_data.db
 honeypot_metadata.json
 anomaly_model.pkl
