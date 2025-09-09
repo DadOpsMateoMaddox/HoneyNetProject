@@ -854,6 +854,7 @@ black cerberusmesh/
 - **AI Security**: "Adversarial Machine Learning" by Biggio & Roli
 - **AWS Security**: AWS Security Best Practices whitepaper
 - **Threat Hunting**: "Threat Hunting" by Bianco et al.
+- **Cloud Computing**: [Practice Questions](docs/cloud_computing_practice_questions.md) for cybersecurity professionals
 
 ### Related Projects
 - **Cowrie**: SSH/Telnet honeypot (used internally)
