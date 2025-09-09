@@ -11,10 +11,14 @@
             "id": "3a8ed78a9eeeac90",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "COMMERCIAL_STRATEGY.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "COMMERCIAL_STRATEGY"
             }
           }
         ]
@@ -90,6 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "COMMERCIAL_STRATEGY.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Backlinks for COMMERCIAL_STRATEGY"
             }
           },
           {
@@ -108,11 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "COMMERCIAL_STRATEGY.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links"
+              "title": "Outgoing links from COMMERCIAL_STRATEGY"
             }
           },
           {
@@ -136,12 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "COMMERCIAL_STRATEGY.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline"
+              "title": "Outline of COMMERCIAL_STRATEGY"
             }
           }
         ]
@@ -164,6 +171,11 @@
   },
   "active": "3a8ed78a9eeeac90",
   "lastOpenFiles": [
+    "ETHICAL_USE.md",
+    "ccyberbowlEthicalEvidence.png",
+    "COMMERCIAL_STRATEGY.md",
+    "MITRE_NIST_COMPLIANCE_ANALYSIS.md",
+    "DEVSECOPS_AUDIT.md",
     "CerberusMesh-Obsidian-Vault/System Overview.md",
     "Patreon-Post-CerberusMesh.md",
     "WhenUCommitAndRealizeYourForgotToInit.png",
