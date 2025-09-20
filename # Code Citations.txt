@@ -1,0 +1,27 @@
+# Code Citations
+
+## License: MIT
+https://github.com/cygy/ansible-roles/blob/20fac78c7ccd12a027fdab839ea643e80325290f/roles/monitoring/templates/docker-compose.yml.j2
+
+```
+--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable
+```
+
+
+## License: unknown
+https://github.com/anandvyas/anandvyas.in/blob/72c83ec4adad1547b94756fddac7672914a9d097/content/posts/docker/docker-sftpgo.md
+
+```
+--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable
+```
+

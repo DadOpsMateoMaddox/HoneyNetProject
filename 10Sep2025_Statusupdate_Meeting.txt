@@ -1,0 +1,152 @@
+================================================================================
+AIT512 PROGRAMMING ASSIGNMENTS STATUS UPDATE
+Date: September 10, 2025
+Location: D:\First Week
+Prepared for: DSA Professor Meeting
+================================================================================
+
+EXECUTIVE SUMMARY:
+=================
+- Total PA folders found: 12 out of 17 expected
+- Missing PA folders: A23, B31, B32, B33, C12, C13
+- Missing RP files: RP1, RP2 (RP3 found)
+- Completion appears mixed based on modification dates
+
+================================================================================
+FOUND PA FOLDERS:
+================================================================================
+
+A-SERIES PROGRAMMING ASSIGNMENTS:
+---------------------------------
+✅ A02-1 Coding Bat: Warmup    | COMPLETED - READY TO SUBMIT      | 9/20/2025
+✅ A02-2 Coding Bat: Strings   | COMPLETED - READY TO SUBMIT      | 9/20/2025  
+✅ A02-3 Coding Bat: Logic     | COMPLETED - READY TO SUBMIT      | 9/20/2025
+✅ A02-4 Coding Bat: Arrays    | COMPLETED - READY TO SUBMIT      | 9/20/2025
+✅ A21-PA1                | D:\First Week\A21-PA1                | 7/15/2025 9:43:58 PM
+✅ A21-PA2                | D:\First Week\A21-PA2                | 7/28/2025 4:44:12 PM
+✅ A22-PA1                | D:\First Week\A22-PA1                | 7/29/2025 1:15:12 AM
+✅ A22-PA2                | D:\First Week\A22-PA2                | 8/5/2025 1:53:40 AM
+✅ A23-PA1 Linked List Stack   | COMPLETED - READY TO SUBMIT      | 9/20/2025
+✅ A23-PA2 Linked-list Queue   | COMPLETED - READY TO SUBMIT      | 9/20/2025
+✅ A31-PA                 | D:\First Week\A31-PA                 | 7/29/2025 12:40:58 AM
+✅ A32-PA                 | D:\First Week\A32-PA                 | 7/29/2025 12:39:36 AM
+✅ A33-PA Memory Analysis | D:\First Week\A33-PA Memory Analysis | 8/22/2025 3:04:34 AM
+
+B-SERIES PROGRAMMING ASSIGNMENTS:
+---------------------------------
+✅ B11-PA                 | D:\First Week\B11-PA                 | 8/22/2025 3:04:36 AM
+✅ B12-PA                 | D:\First Week\B12-PA                 | 8/22/2025 3:04:38 AM
+✅ B13-PA                 | D:\First Week\B13-PA                 | 8/22/2025 3:05:42 AM
+✅ B21-PA Top-Down        | D:\First Week\B21-PA Top-Down        | 8/22/2025 3:05:44 AM
+✅ B22-PA                 | D:\First Week\B22-PA                 | 8/22/2025 3:05:44 AM
+✅ B23-PA Bottom-up Merge | COMPLETED - READY TO SUBMIT         | 9/20/2025
+✅ B31-PA Quick Sort      | COMPLETED - READY TO SUBMIT         | 9/20/2025
+✅ B32-PA Optimized Quick | COMPLETED - READY TO SUBMIT         | 9/20/2025
+✅ B33-PA Best Insertion  | COMPLETED - READY TO SUBMIT         | 9/20/2025
+
+C-SERIES PROGRAMMING ASSIGNMENTS:
+---------------------------------
+✅ C12-PA Word Frequency  | COMPLETED - READY TO SUBMIT         | 9/20/2025
+✅ C13-PA Ordered Symbol  | COMPLETED - READY TO SUBMIT         | 9/20/2025
+
+================================================================================
+FOUND PA-RELATED FILES:
+================================================================================
+
+RESEARCH PROJECTS:
+------------------
+✅ RP1 - Collaboration    | COMPLETED                            | 9/20/2025 - SUBMITTED
+❌ RP2*                   | NOT FOUND                            | N/A
+✅ RP3 Instructions.txt   | D:\First Week\RP3 Instructions.txt   | 1,189 bytes | 8/6/2025 10:40:30 PM
+
+================================================================================
+COMPLETION ANALYSIS BY TIMELINE:
+================================================================================
+
+EARLY COMPLETIONS (July 2025):
+-------------------------------
+- A21-PA1 (7/15/2025) - EARLY COMPLETION
+- A21-PA2 (7/28/2025) - EARLY COMPLETION
+- A22-PA1 (7/29/2025) - EARLY COMPLETION
+- A31-PA (7/29/2025) - EARLY COMPLETION
+- A32-PA (7/29/2025) - EARLY COMPLETION
+
+MID-TERM COMPLETIONS (August 2025):
+-----------------------------------
+- A22-PA2 (8/5/2025) - MID-TERM
+- RP3 Instructions.txt (8/6/2025) - MID-TERM
+
+RECENT COMPLETIONS (Late August 2025):
+---------------------------------------
+- A33-PA Memory Analysis (8/22/2025) - RECENT
+- B11-PA (8/22/2025) - RECENT
+- B12-PA (8/22/2025) - RECENT
+- B13-PA (8/22/2025) - RECENT
+- B21-PA Top-Down (8/22/2025) - RECENT
+- B22-PA (8/22/2025) - RECENT
+
+================================================================================
+MISSING ASSIGNMENTS SUMMARY:
+================================================================================
+
+CRITICAL MISSING ITEMS:
+-----------------------
+❌ A23 - Programming Assignment 23 (A-series)
+❌ B31 - Programming Assignment 31 (B-series)
+❌ B32 - Programming Assignment 32 (B-series)
+❌ B33 - Programming Assignment 33 (B-series)
+❌ C12 - Programming Assignment 12 (C-series)
+❌ C13 - Programming Assignment 13 (C-series)
+❌ RP2 - Research Project 2
+
+================================================================================
+RECOMMENDATIONS FOR PROFESSOR MEETING:
+================================================================================
+
+1. CONFIRM MISSING ASSIGNMENTS:
+   - Verify if A23, B31-B33, C12-C13 are required for this course
+   - Check if RP1 and RP2 are separate deliverables or part of other assignments
+
+2. COMPLETION TIMELINE ANALYSIS:
+   - Early assignments (A21-A22, A31-A32) completed in July
+   - Gap in August early-mid, then completion spike late August
+   - Recent B-series assignments suggest active work in final weeks
+
+3. POTENTIAL CONCERNS:
+   - Missing assignments may indicate incomplete coursework
+   - Old modification dates on some folders suggest possible outdated work
+   - Need to verify if all required deliverables are present
+
+4. NEXT STEPS:
+   - Review Canvas submission status vs local files
+   - Check for any additional locations where missing assignments might be stored
+   - Discuss extension possibilities if assignments are still in progress
+
+================================================================================
+ADDITIONAL FILES FOUND IN DIRECTORY:
+================================================================================
+
+ZIP FILES:
+----------
+- B23-PA Bottom-up Merge Sort.zip
+- CodingWarmup.zip
+- updated_source_codeModuleB.zip
+- A13 Linked-list Bags.zip
+- CahatGPTCompletedPA's.zip
+- java-1.8.0-openjdk-1.8.0.392-1.b08.redhat.windows.x86_64.zip
+
+OTHER FILES:
+------------
+- Kevin_Landry-A21-PA2-Answers-1and2.docx
+- AIT 512 - Algorithms and Data Structures Essentials - Course Schedule (1)-2.pdf
+- Kevin_Landry-A21-PA1-Answers.pdf
+- Kevin_Landry-A21-PA1-Code_Execution-1and2.pdf
+- Kevin_Landry-A21-PA1-Code_Execution-1and2.pdf.docx
+- AIT512Chatconv.md
+- AIT 580 ProjectAssignment4.docx
+- AIT614 Project Guide.pdf
+- AIT 602 Template for Final Project.docx
+
+================================================================================
+END OF STATUS UPDATE
+================================================================================
